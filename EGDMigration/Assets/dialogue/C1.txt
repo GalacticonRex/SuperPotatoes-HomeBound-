@@ -1,0 +1,125 @@
+#C1 - Francois (crew member) game intro conversation
+
+."C1 conv1 start"
+EndgameFlag = false
+C4Win = false
+C5678win = false
+C5678Introduced = false
+C56opinion=0
+C7opinion=0
+C7KnowsYouAreAlone = false
+C8opinion=0
+C8KnowsYouAreAlone = false
+C13opinion=0
+C13known = 0
+C13win = false
+Anywin = false
+C13lose = false
+OptionsLeft = 4
+SisterConv = 0
+C5678ConversationNumber = 0
+"'''" "'''''''''''"
+"Dev" "Do you want to skip the intro?"
+	"Yes"
+		PlayerName = "Dev"
+		=> exit
+	"No"
+		=> "C1 conv1 start 2"
+
+."C1 conv1 start 2"
+"" "A stern looking older man in a uniform walks in and looks right at you."
+"man in uniform" "Name?"
+PlayerName = [Enter your name:]
+"man in uniform" "You're not on the manifest. How'd you get here?"
+	"I don't know."
+		=>"C1 conv1 2"
+	"My parents snuck me in."
+		=>"C1 conv1 2"
+	"I snuck on board."
+		=>"C1 conv1 2"
+
+."C1 conv1 2"
+"man in uniform" "Do you have someone waiting for you when we get there?"
+	"Yes (lie)"
+		=>"C1 conv1 3-1"
+	"No"
+		=>"C1 conv1 3-2"
+	"Where are we going?"
+		=>"C1 conv1 3-3"
+
+."C1 conv1 3-1"
+"man in uniform" "Well that's not even slightly convincing."
+=>"C1 conv1 4"
+
+."C1 conv1 3-2"
+"man in uniform" "Damnit, not again."
+=>"C1 conv1 4"
+
+."C1 conv1 3-3"
+"man in uniform" "What? You really don't know?! We're headed to Mars, kid."
+=>"C1 conv1 4"
+
+."C1 conv1 4"
+"man in uniform" "The colony really isn't a good place for a lone kid. I don't know what's going to happen to you there. You can't just show up by yourself."
+	"Oh, what should I do?"
+		=> "C1 conv1 5-1"
+	"Can you come with me?"
+		LastChoice="you come with me"
+		Because="I've got to head back with the ship."
+		=> "C1 conv1 5-2"
+	"Can I just stay here?"
+		LastChoice="I stay here"
+		Because="you can't live here. We don't have the resources to raise a kid."
+		=> "C1 conv1 5-2"
+	"Can you take me back to earth?"
+		LastChoice="you take me back"
+		Because="We're not stopping anywhere safe, and I can't ust drop you alone in the middle of a war zone."
+		=> "C1 conv1 5-2"
+
+."C1 conv1 5-1"
+"man in uniform" "Hmmm..."
+=> "C1 conv1 6"
+
+."C1 conv1 5-2"
+"man in uniform" "No."
+=> "C1 conv1 6"
+
+."C1 conv1 6"
+"man in uniform" "You should see if one of the other passengers will take you. I'll tell you what, if you can find someone who will, I'll fudge the paperwork to keep you with them when we get there."
+	"Can you help me?"
+		=> "C1 conv1 7-1"
+	"Why can't %?" % LastChoice
+		=> "C1 conv1 7-2"
+	"What if they won't?"
+		=> "C1 conv1 7-3"
+	"Okay."
+		=> "C1 conv1 8"
+
+."C1 conv1 7-1"
+"man in uniform" "I'm already doing everything I can."
+=> "C1 conv1 8"
+
+."C1 conv1 7-2"
+"man in uniform" "Because %" % Because
+=> "C1 conv1 8"
+
+."C1 conv1 7-3"
+"man in uniform" "Then good luck. You'll need it."
+=> "C1 conv1 8"
+
+."C1 conv1 8"
+"man in uniform" "Don't leave this cargo bay, bedrolls are at the starboard corner, mess is in 6 hours, and the trip should take 3 days. I need to get back to work."
+	"Okay"
+		=> "C1 conv1 end"
+	"Wait, what should I be doing?"
+		=> "C1 conv1 9-1"
+	"Why are you so mean?"
+		=> "C1 conv1 9-2"
+
+."C1 conv1 9-1"
+"man in uniform" "Mostly just don't cause any trouble. You should probably also ask around and see if any of the other passengers will take you in."
+=>"C1 conv1 end"
+
+."C1 conv1 9-2"
+"man in uniform" "Look, I'm sorry. I want to care, but it's too much. I just don't have it in me anymore. Your situation sucks, and I'm not going to sugarcoat it."
+=> exit

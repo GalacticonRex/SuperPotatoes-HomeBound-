@@ -1,0 +1,450 @@
+#C5,6,7,8 - Ambrose, Amelia, Paige, and Lucinda Worthington (Dad, Mom, older, younger)
+
+."C5678 start"
+if C5678ConversationNumber == 0:
+	=>"C5678 conv1 1"
+else:
+	=>"C5678 conv2 1"
+endif
+
+
+."C5678 conv1 1"
+C5678ConversationNumber = 1
+"Lucinda" "Hi!"
+"Mrs. Worthington" "Lucinda! What have I told you? Don't talk to strangers."
+"Mrs. Worthington" "You, what do you want?"
+	"I'm lost"
+		Response = "Sorry, we can't help you."
+		=> "C5678 conv1 2"
+	"I just want to talk."
+		Response = "Sorry, we're busy."
+		=> "C5678 conv1 2"
+	"I want someone to play with."
+		C5678opinion - 1
+		Response = "Sorry, we're busy."
+		=> "C5678 conv1 2"
+	"Who are you?"
+		C5678opinion - 1
+		Response = "Excuse me? Mind your manners."
+		=> "C5678 conv1 2"
+	"Hi I'm %" % PlayerName
+		C5678Introduced = true
+		Response = "So?"
+		=> "C5678 conv1 2"
+
+
+."C5678 conv1 2"
+"Mrs. Worthington" "%" % Response
+	"Sorry"
+		C5678opinion + 1
+		=> exit
+	"You're mean"
+		C5678opinion - 1
+		=> exit
+	"(walk away)"
+		=> exit
+
+."C8 start"
+if C5678Introduced == false:
+	=> "C8 conv1 1-1"
+else:
+	=> "C8 conv1 1-2"
+endif
+
+."C8 conv1 1-1"
+"Lucinda" "Hi! Sorry my mom yelled at you before. My name is Lucinda, by the way, but I guess you already knew that."
+	"It's okay. I'm %" %PlayerName
+		Response = ""
+		=> "C8 conv1 2"
+	"Sorry if I got you in trouble. My name is %" % PlayerName
+		Response = "Nah, I'm fine."
+		=> "C8 conv1 2"
+	"I'm %. She's kind of mean, isn't she?"
+		C8opinion - 1
+		Response = "Uhh... I guess."
+		=> "C8 conv1 2"
+
+."C8 conv1 1-2"
+"Lucinda" "Hi! Sorry my mom yelled at you before."
+	"It's okay."
+		Response = ""
+		=> "C8 conv1 2"
+	"Sorry if I got you in trouble."
+		Response = "Nah, I'm fine"
+		=> "C8 conv1 2"
+	"She's kind of mean, isn't she?"
+		C8opinion - 1
+		Response = "Uhh... I guess."
+		=> "C8 conv1 2"
+
+."C8 conv1 2"
+"Lucinda" "% Hey, I'm playing jacks. You want to play?" % Response
+	"I've never played before, but okay."
+		=> "C8 conv1 3-1"
+	"Okay, but I'm not very good at it."
+		=> "C8 conv1 3-2"
+	"Sure! I'll warn you, I'm really good."
+		=> "C8 conv1 3"
+
+."C8 conv1 3-1"
+"Lucinda" "That's fine, I'll teach you."
+"" "You play for a while. He beats you pretty badly at first, but you start to get the hang of it by the end."
+"Lucinda" = "Hah, I win again! You're getting it though, better than I thought you'd be."
+	"That was a lot of fun!"
+		C8opinion + 1
+		Response = "Cool! I knew you'd like it."
+		=> "C8 conv1 4"
+	"This isn't any fun. Do you have any other games?"
+		Response = "No, sorry."
+		=> "C8 conv1 4"
+
+."C8 conv1 3-2"
+"Lucinda" "That's fine. We're just playing for fun."
+"" "You play for a while. You both win a few games, and it looks like Lucinda is having fun."
+"Lucinda" "You've gotta give yourself some more credit. You're good enough to keep up with me."
+	"That was a lot of fun!"
+		C8opinion + 1
+		Response = "I know, right?"
+		=> "C8 conv1 4"
+	"I'm bored. Do you have any other games?"
+		Response = "No, sorry."
+		=> "C8 conv1 4"
+
+."C8 conv1 3-3"
+"Lucinda" "Then you'll be a fun opponent."
+"" "You play for a while. After you win several games in a row, Lucinda starts to look bored."
+"Lucinda" "Maybe we can do something else now?"
+	"WOOO! In your face!"
+		C8opinion - 1
+		Response = "Uhh... sure, whatever."
+		=> "C8 conv1 4"
+	"I'm bored. Do you have any other games?"
+		Response = "No, sorry."
+		=> "C8 conv1 4"
+	"Sorry, I think I got lucky. Yeah, let's do something else"
+		C8opinion + 1
+		Response = "Yeah, you did warn me."
+		=> "C8 conv1 4"
+
+."C8 conv1 4"
+"Lucinda" "% I used to have a lot of other toys, but I wasn't allowed to bring them. Do you have any?"
+	"I used to, but I couldn't bring them either."
+		=> "C8 conv1 5"
+	"I never really had much."
+		=> "C8 conv1 5"
+	"Yeah, but I'm not sharing."
+		C8opinion - 1
+		=> "C8 conv1 5"
+
+."C8 conv1 5"
+"Lucinda" "Oh."
+	"Maybe we can play more when we get to Mars."
+		Response = "Yeah! That'd be fun... if my parents say okay. Will that be okay with your parents?"
+		=> "C8 conv1 6"
+	"What's your family like?"
+		Response = "Uhh... normal I guess. Mom and Dad always make me play with boring kids, and Paige is always bossy. What about yours?"
+		=> "C8 conv1 6"
+	"I don't want to play anymore. Bye."
+		=> exit
+
+
+."C8 conv1 6"
+"Lucinda" "%" % Response
+	"They're not with me."
+		Response = "Oh, then who are you with?"
+		=> "C8 conv1 7"
+	"I don't have family anymore."
+		Response = "You don't have one? Then who are you with?"
+		=> "C8 conv1 7"
+
+."C8 conv1 7"
+"Lucinda" "%" % Response
+	"Nobody. I'm all alone."
+		=> "C8 conv1 8"
+	"I'm with them over there. (lie)"
+		Response = "Cool. Hey, I've got to go. I'll hang out with you later though."
+		=> exit
+
+."C8 conv1 8"
+"Lucinda" "Who are you going to live with when we get there?"
+	"I don't know."
+		=> "C8 conv1 9"
+	"Maybe I can come with you?"
+		=> "C8 conv1 9"
+
+."C8 conv1 9"
+C8KnowsYouAreAlone = true
+"Lucinda" "My parents look mad at me. I'm really sorry. I have to go. I'll ask them if you can come with us."
+=> exit
+
+
+
+."C7 start"
+if C5678Introduced == false:
+	=> "C8 conv1 1-1"
+else:
+	=> "C8 conv1 1-2"
+endif
+
+."C7 conv1 1-1"
+"Paige" "Oh, it's you. Hello, my name is Paige Worthington."
+	"Hi Paige. I'm %" %PlayerName
+		=> "C7 conv1 2"
+	"It's a pleasure to meet you, Ms. Worthington. I'm %" % PlayerName
+		C7opinion + 1
+		=> "C7 conv1 2"
+
+."C7 conv1 1-2"
+"Paige" "Oh, it's you. % was it? Hello, my name is Paige Worthington." % PlayerName
+	"Hi Paige."
+		=> "C7 conv1 2"
+	"It's a pleasure to meet you, Ms. Worthington."
+		C7opinion + 1
+		=> "C7 conv1 2"
+
+."C7 conv1 2"
+"Paige" "May I help you?"
+	"What are you up to? You wanna play?"
+		Response = "I don't know you. I'm not supposed to play with you."
+		Response2 = "I don't really have anything good with me though."
+		=> "C7 conv1 3-1"
+	"I'm just looking for someone to talk to."
+		Response = "I'm pretty sure my parents don't want me talking to you."
+		Response2 = ""
+		=> "C7 conv1 3-2"
+
+."C7 conv1 3"
+"Paige" "%" % Response
+	"So what? Your parents aren't paying attention."
+		Response = "For once, yeah. They've been hovering so close lately I can't breath."
+		=> "C7 conv1 4-1"
+	"Oh, okay. Your parents seem pretty strict."
+		Response = "They're worse than usual right now."
+		=> "C7 conv1 4-2"
+
+."C7 conv1 4"
+"Paige" "% %" % Response, Response2
+	"Is it just the trip?"
+		=> "C7 trip 1"
+	"Are they normally a lot friendlier?"
+		=> "C7 home 1"
+
+."C7 trip 1"
+"Paige" "No. I mean, the trip has been worse, but they're always like this. They're so controlling and always trying to make people think we're better than everyone else."
+	"You look pretty well off."
+		Response = "Well then they're doing a good job at it."
+		=> "C7 home 3"
+	"Is that such a bad thing?"
+		C7opinion - 1
+		Response = "It's totally garbage."
+		=> "C7 home 3"
+
+."C7 home 1"
+"Paige" "Hmmm... Not really. They pretend to be though. They're always terribly polite to people back home, but it was always just for show. They would always complain about them behind their backs."
+	"Did they do that to everyone?"
+		Response = "Pretty much, yeah. The whole family is like that."
+		=> "C7 home 2"
+	"Why?"
+		Response = "Because they're afraid."
+		=> "C7 home 2"
+
+."C7 home 2"
+"Paige" "% They want everyone thinking they're so much better off and so much more perfect than anyone else." % Response
+	"You look pretty well off."
+		Response = "Well then they're doing a good job at it."
+		=> "C7 home 3"
+	"Is that such a bad thing?"
+		C7opinion - 1
+		Response = "It's totally garbage."
+		=> "C7 home 3"
+
+."C7 home 3"
+"Paige" "% Everything is fake. They used to make stuff up to the neighbors. They lied about which school I went to and what my grades were. They pretended Lucinda had her own horse. They even bought her a dumb riding outfit and made her wear it when walking out to the car. It's crazy."
+	"% Wow, that is crazy." % Response
+		Response = "Isn't it? That's not even the worst of it."
+		=> "C7 home 4"
+	"So, what's the big deal?"
+		C7opinion - 1
+		Response = "It's totally garbage. I don't want to have a fake life."
+		=> "C7 home 4"
+
+."C7 home 4"
+"Paige" "% Mom and Dad are pretending we're just moving, like it's normal. We're not moving, we're running from the same stuff everyone else is. Soldiers with guns showed up to our house and said we had to leave, and they act like it never happened. I just lost all my friends, and they won't even let me talk about it." % Response
+	"Well, at least you get to talk to me."
+		Response = "Yeah, until they notice and shoo you away again."
+		=> "C7 home 5"
+	"That sucks."
+		Response = "Yeah... Yeah it does."
+		=> "C7 home 5"
+
+."C7 home 5"
+"Paige" "% Sorry for dumping all this on you. You have enough problems of your own right now, being alone and all." % Response
+	"How'd you know?"
+		Response = "It's kind of obvious. Besides, my parents were gossiping about it anyway."
+		=> "C7 alone 1"
+	"Uhh, yeah."
+		Response = ""
+		=> "C7 alone 1"
+
+."C7 alone 1"
+"Paige" "% Is your family already up there?" % Response
+	"No. I'm on my own."
+		Response = "Really? That really sucks. What are you going to do when-"
+		C7KnowsYouAreAlone = true
+		=> "C7 alone 2"
+	"(lie) Yeah, they're waiting for me."
+		Response = "Good. At least we're almost there."
+		=> "C7 alone 2"
+
+."C7 alone 2"
+"Paige" "% Oh damnit. I think my parents just noticed us talking. I've got to go." % Response
+	"Okay, bye"
+		=> exit
+	"No, wait."
+		=> exit
+	"You don't have to end up like them, you know."
+		C7opinion + 1
+		=> exit
+
+
+
+
+
+
+
+."C5678 conv2 1"
+"" "As you approach, you hear Mrs. Worthington speaking quietly and sharply to Lucinda"
+	"Excuse me"
+		C56opinion + 1
+		=> "C5678 conv2 2"
+	"Hi"
+		=> "C5678 conv2 2"
+
+."C5678 conv2 2"
+"Mr. Worthington" "Yes? What is it?"
+	"May I come with you?"
+		C56opinion + 1
+		=> "C5678 conv2 3"
+	"I need someone to go with."
+		=> "C5678 conv2 3"
+	"I just want to say goodbye before we land."
+		=> "C5678 bye 1"
+
+."C5678 bye 1"
+"Mr. Worthington" "Sure, whatever. Goodbye."
+if C7KnowsYouAreAlone == true:
+	=> "C5678 bye 7knows 1"
+else: if C8KnowsYouAreAlone == true:
+	=> "C5678 bye 8knows 1"
+else:
+	=> exit
+endif
+
+."C5678 bye 7knows 1"
+"Paige" "You found someone to take you?"
+	"Yeah."
+		=> "C5678 bye 7knows 2"
+	"No."
+		=> "C5678 bye 7knows 3"
+		
+."C5678 bye 7knows 2"
+"Mr. Worthington" "Oh fantastic. Good luck. Goodbye."
+=> exit
+		
+."C5678 bye 7knows 3"
+"Mr. Worthington" "Oh such a shame. Good luck. Goodbye."
+"Paige" "Dad, we can't just-"
+"Mr. Worthington" "Cut that out, right now. I told you before, we can't just take kids. End of story."
+=> exit
+
+."C5678 bye 8knows 1"
+"Lucinda" "Oh, you found out who to live with? Great!"
+	"Yeah."
+		=> "C5678 bye 8knows 2"
+	"No, not yet."
+		=> "C5678 bye 8knows 3"
+		
+."C5678 bye 8knows 2"
+"Mr. Worthington" "Oh fantastic. Good luck. Goodbye."
+=> exit
+		
+."C5678 bye 8knows 3"
+"Mr. Worthington" "Oh such a shame. Good luck. Goodbye."
+"Luscinda" "Dad, we can't just-"
+"Mr. Worthington" "Cut that out, right now. I told you before, we can't just take kids. End of story."
+=> exit
+
+	
+."C5678 conv2 3"
+if C7KnowsYouAreAlone == true && C8KnowsYouAreAlone == true:
+	=> "C5678 conv2 3-both"
+else: if C7KnowsYouAreAlone == true:
+	=> "C5678 conv2 3-p"
+else: if C8KnowsYouAreAlone == true:
+	=> "C5678 conv2 3-l"
+else:
+	=> exit
+endif
+
+
+."C5678 conv2 3-p"
+"Paige" "See, I told you."
+=> "C5678 conv2 refuse 1"
+
+."C5678 conv2 3-l"
+"Lucinda" "See, I told you."
+=> "C5678 conv2 refuse 1"
+
+
+."C5678 conv2 refuse 1"
+"Mrs. Worthington" "And I told you that is not your concern."
+"Lucinda" "But they need us."
+"Paige" "% is really not a bad kid." % PlayerName
+"Mr. Worthington" "Lucinda, Paige, don't talk back to your mother!"
+"Mrs. Worthington" "And you, kid. You should probably get on out of here. We have family matters to attend to."
+=> exit
+
+."C5678 conv2 3-both"
+"Paige" "See, we told you."
+"Mrs. Worthington" "And I told you that is not your concern."
+"Lucinda" "But they need us."
+"Paige" "% is really not a bad kid." % PlayerName
+if C56opinion > 1:
+	=> "C5678 maybe 1"
+else:
+	=> "C5678 conv2 refuse 2"
+endif
+
+."C5678 conv2 refuse 2"
+"Mr. Worthington" "Lucinda, Paige, don't talk back to your mother!"
+"Mrs. Worthington" "And you, kid. You should probably get on out of here. We have family matters to attend to."
+=> exit
+
+."C5678 maybe 2"
+"Mr. Worthington" "Lucinda, Paige, don't talk back to your mother!"
+"Mrs. Worthington" "And you, kid. Why don't you go find someone else?"
+	"I think you're a good family."
+		=> "C5678 maybe 3"
+	"I get along with your kids, and I want to keep playing with them."
+		=> "C5678 refuse 3"
+	"Nobody else will take me."
+		=> "C5678 refuse 4"
+	"Okay, fine."
+		=> exit
+
+."C5678 refuse 3"
+"Mrs. Worthington" "Stay away from my daughters. Now get on out of here. We have family matters to attend to."
+=> exit
+
+."C5678 refuse 4"
+"Mrs. Worthington" "Is that supposed to be a selling point? That only makes it clearer that you don't belong with us. Now get on out of here. We have family matters to attend to."
+=> exit
+
+."C5678 maybe 3"
+"" "They whisper back and forth to each other for a minute."
+"Mr. Worthington" "Fine. You can stay with us, but only until we find somewhere else for you. You're not our child, so we're not going to treat you like you are. You'll stay on good behavior and do what you're told. Is that understood?"
+	"Yes."
+		C5678Win = true
+		=> "gameover"
+	"Actually, I think I will go somewhere else."
+		=> exit

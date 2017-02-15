@@ -1,0 +1,183 @@
+# C4 - Kate (lone kid) conversation
+
+."C4 start"
+if EndgameFlag == false:
+	=>"C4 c1 1"
+else:
+	=>"C4 endgame"
+endif
+
+."C4 c1 1"
+"Girl" "Hey, pip. I didn't see you get on board. You're not with any of the other passengers, are you?"
+	"No, I'm alone"
+		Response = "That's okay, so am I"
+		=> "C4 c1 2"
+	"(lie) My family is... uhh... in the other room."
+		Response = "It's okay. I get it. I'm on my own too."
+		=> "C4 c1 2"
+	"(say nothing)"
+		Response = "Not a talker, are you? Well that's alright."
+		=> "C4 c1 2"
+
+."C4 c1 2"
+"Kate" "% I'm Kate by the way." % Response
+	"I'm %" % PlayerName
+		Response = "Well it's a pleasure to meet you, %." % PlayerName
+		=> "C4 c1 3"
+	"You don't look old enough to be on your own."
+		Response = "Like you are? Hah."
+		=> "C4 c1 3"
+	"Why are you going to Mars?"
+		Response = "Hmm... Where do I start?"
+		=> "C4 c1 3"
+
+."C4 c1 3"
+"Kate" "% I’ve been on my own for a while. My brother was taking care of me until he got caught. Family services took me away from him and put me in some big home. It was pretty awful. I eventually managed to slip out and made my way back to where we used to live, but he was gone. I’m not exactly sure when waiting around turned into living, but I was making it on my own for a couple years. The city has really been going to hell lately though, and it was getting too hard to scrape by. I heard the colony has a lot of rich people in it, so I figured it’d be a much easier place to... uhh... get by on generous donations. Hey, what was your plan by the way?" % Response
+	"That guy in a uniform said I should try to get someone to take me in."
+		Response = "You’re little enough, that might just work."
+		=> "C4 c1 5"
+	"I’m going to try to make it on my own."
+		Response = "You’re pretty small, no offense or anything, a lot littler than when I had to start on my own. I hope you can come up with something else."
+		=> "C4 c1 4"
+	"I don’t have one."
+		Response = "Oh hun, you’re gonna get eaten alive if you don’t know what you’re doing."
+		=> "C4 c1 4"
+
+
+
+
+
+
+."C4 c1 4"
+"Kate" "%" % Response
+	"Well that guy in a uniform said I should try to get someone to take me in. I just don’t know about that though."
+		Response = "You know, that might not be the worst idea, just until you can get out on your own. Some of these people aren’t half bad."
+		=> "C4 c1 5"
+	"Maybe you could help me? I don’t really know what I’m doing."
+		Response = "Yeah... of course. I’ll show you the ropes and all."
+		=> "C4 c1 5" 
+
+
+
+."C4 c1 5"
+"Kate" "% I’ve already scoped everyone here out. I can give you the lowdown on them." % Response
+	"Yeah, that'd be really helpful."
+		=> "C4 c1 lowdown"
+	"Actually I have other questions."
+		=> "C4 c1 questions"
+	"No thanks, I don't really want any help right now."
+		=> "C4 c1 end"
+
+
+."C4 c1 lowdown"
+"Kate" "Who do you want to know about?"
+	"Who’s the guy in the uniform?"
+		=> "C4 c1 lowdown char1"
+	"Who are those two older kids?"
+		=> "C4 c1 lowdown char2-3"
+	"Do you know anything about that big family over there?"
+		=> "C4 c1 lowdown char5-8"
+	"What about that old lady with the two kids?"
+		=> "C4 c1 lowdown char10-12"
+	"What’s the deal with that old guy off by himself?"
+		=> "C4 c1 lowdown char13"
+
+."C4 c1 lowdown char1"
+"Kate" "That’s Francois. He’s rough, but harmless. He’s the only crew member who has come in here, I think because they’re trying to keep this whole thing on the downlow."
+	"I want to hear about someone else."
+		=> "C4 c1 lowdown"
+	"Actually I have other questions."
+		=> "C4 c1 questions"
+	"I don't think I need anything else right now."
+		=> "C4 c1 end"
+
+."C4 c1 lowdown char2-3"
+"Kate" "(characters 2 and 3 story summary)"
+	"I want to hear about someone else."
+		=> "C4 c1 lowdown"
+	"Actually I have other questions."
+		=> "C4 c1 questions"
+	"I don't think I need anything else right now."
+		=> "C4 c1 end"
+
+."C4 c1 lowdown char5-8"
+"Kate" "Oh, the Worthingtons. The parents are kind of toolbags. They’re uptight and don’t want their kids getting mixed up in the riffraff like us. If you’re disgustingly polite to them, they not quite as nasty. The kids on the other hand are alright, even if they are incredibly spoiled. Vincent takes after her folks a little, but Anton seems like a sweet kid still."
+	"I want to hear about someone else."
+		=> "C4 c1 lowdown"
+	"Actually I have other questions."
+		=> "C4 c1 questions"
+	"I don't think I need anything else right now."
+		=> "C4 c1 end"
+
+."C4 c1 lowdown char10-12"
+"Kate" "(characters 10-12 story summary)"
+	"I want to hear about someone else."
+		=> "C4 c1 lowdown"
+	"Actually I have other questions."
+		=> "C4 c1 questions"
+	"I don't think I need anything else right now."
+		=> "C4 c1 end"
+
+."C4 c1 lowdown char13"
+"Kate" "Oh Dr. Kapoor? He’s crazy. I only know he speaks English because I heard him arguing with someone before we got on the ship. It sounded like he didn’t actually want to get on, not sure why though. He hasn’t said a peep since we got on though. Good luck if you try to get anything out of him."
+	"I want to hear about someone else."
+		=> "C4 c1 lowdown"
+	"Actually I have other questions."
+		=> "C4 c1 questions"
+	"I don't think I need anything else right now."
+		=> "C4 c1 end"
+
+."C4 c1 questions"
+"Kate" "Fire away."
+	"Do you know what Mars is going to be like?"
+		=> "C4 c1 mars"
+	"What's going on back on Earth?"
+		=> "C4 c1 earth"
+	"Can I just come with you?"
+		=> "C4 c1 go with"
+
+."C4 c1 mars"
+"Kate" "To be honest, no. I've heard a lot of rumors though, and it's a little hard to tell the difference between hopes and facts there. It's at least safe from the war, that's for sure. If it's actually as comfortable and prosperous as everyone says, well I guess we'll just have to find out."
+	"I want to ask something else."
+		=> "C4 c1 questions."
+	"Actually I'm wondering about the other passengers."
+		=> "C4 c1 lowdown"
+	"I don't think I need anything else right now."
+		=> "C4 c1 end"
+
+."C4 c1 earth"
+"Kate" "I actually stayed out of most of it, so I'm not sure I've got the most accurate info. I was really sort of occupied with just getting by and avoiding the cops."
+	"I want to ask something else."
+		=> "C4 c1 questions."
+	"Actually I'm wondering about the other passengers."
+		=> "C4 c1 lowdown"
+	"I don't think I need anything else right now."
+		=> "C4 c1 end"
+
+."C4 c1 go with"
+"Kate" "Yeah that's a bad plan, pip. I was a few years older when I had to start living on the streets, and I don't think I'd have made it if I were your age. Still, I'm not going to say no if you have no other options. At least try to figure something else out for now."
+	"I want to ask something else."
+		=> "C4 c1 questions."
+	"Actually I'm wondering about the other passengers."
+		=> "C4 c1 lowdown"
+	"I don't think I need anything else right now."
+		=> "C4 c1 end"
+
+."C4 c1 end"
+"Kate" "Good hunting. I'll be around if you need anything else."
+=> exit
+
+."C4 endgame"
+"Kate" "Hey, pip. How'd you make out?"
+	"Nobody would take me."
+		Response = "Damn, that's raw. Sometimes I hate people. I think now might be one of those times."
+		=> "C4 endgame 1"
+	"I want to come with you."
+		Response = "Really? Everyone else was that bad? It's not going to be an easy life, and you're going to have to bust your ass to keep up."
+		=> "C4 endgame 1" 
+
+
+."C4 endgame 1"
+"Kate" "% You can definitely stick with me though. We'll make it through whatever this red ball has to throw at us."
+C4Win = true
+=> "gameover"

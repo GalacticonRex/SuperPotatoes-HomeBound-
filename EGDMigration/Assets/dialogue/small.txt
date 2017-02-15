@@ -1,0 +1,5 @@
+."Small"
+"Person" "Hello"
+PlayerName = [What is your name?]
+"..." "Hi, I'm %. I'm % years old!" % PlayerName, [How old are you?]
+=> exit

@@ -1,0 +1,522 @@
+#C13 - Dr. Kapoor, conversation start
+
+."C13 start"
+C13ConversationNumber + 1
+AllConversationNumber + 1
+C13LastConversation = AllConversationNumber
+if C13ConversationNumber == 1:
+	=> "C13 conv1 start"
+else: if C13ConversationNumber == 2 && C13opinion<5:
+	=> "C13 conv2 start bad"
+else: if C13ConversationNumber == 2:
+	=> "C13 conv2 start good"
+else: 
+	OptionsLeft - 1
+	=> "C13 conv3"
+endif
+
+
+."C13 conv1 start"
+"" "The man is staring at the floor and doesn't seem to notice you."
+	"Hi, I'm %. What's your name?" % PlayerName
+		=> "C13 2"
+	"Hi. What's your name?"
+		=> "C13 2"
+	"Hi."
+		=> "C13 2"
+
+
+."C13 2"
+"Dr. Kapoor" "..."
+	"Do you talk?"
+		=> "C13 do you talk"
+	"It's okay. You don't have to talk. I'll just have to do the talking for us."
+		=> "C13 open conversation 1"
+
+."C13 do you talk"
+C13opinion - 1
+"Dr. Kapoor" "..."
+	"Are you deaf or something?"
+		=> "C13 leave alone 1"
+	"It's okay. You don't have to talk. I'll just have to do the talking for us."
+		C13opinion + 1
+		=> "C13 open conversation 1"
+	"I bet I can get you to talk."
+		=> "C13 open conversation 1"
+
+."C13 leave alone 1"
+"Dr. Kapoor" "Go away, you little brat."
+	"Yes! You talked!"
+		=> "C13 go away harsh"
+	"I'm sorry. I didn't mean to upset you."
+		=> "C13 go away soft"
+	"Okay"
+		=> exit
+
+."C13 go away harsh"
+C13opinion = 0
+"Dr. Kapoor" "SCRAM!"
+=> exit
+
+
+."C13 go away soft"
+C13opinion + 1
+"Dr. Kapoor" "Aww crap, I'm sorry. I didn't mean to snap at you, kid. Chill out a little bit though, will ya?"
+	"I just wanted to talk."
+		=> "C13 just give me some time"
+	"I'll leave you alone. Maybe we can talk later?"
+		=> "C13 just give me some time"
+	"(walk away)"
+		=> exit
+
+."C13 just give me some time"
+C13opinion + 1
+"Dr. Kapoor" "Just give me a little time, alright?"
+	"Alright"
+		=> exit
+
+
+."C13 open conversation 1"
+C13opinion + 1
+"Dr. Kapoor" "..."
+	"I wish they had ice cream on this ship."
+		=> "C13 OC 1-1"
+	"It's really cramped in here. I'm looking forward to being outside again."
+		=> "C13 OC 1-2"
+	"Are you scared? I'm scared too."
+		=> "C13 OC 1-3"
+	"I don't know what to say though."
+		=> exit
+
+."C13 OC 1-1"
+C13opinion + 1
+"Dr. Kapoor" "..."
+	"Vanilla is my favorite, but strawberry is my other favorite."
+		=> "C13 OC 1-1-1"
+	"One time for my birthday, we had a whole cake made of ice cream."
+		=> "C13 OC 1-1-2"
+	"I wonder if they have any."
+		=> "C13 OC 1-1-3"
+	"Nevermind."
+		=> exit
+
+."C13 OC 1-2"
+C13opinion + 1
+"Dr. Kapoor" "..."
+	"I ilke to run around outside without shoes on. I wonder if there is grass on Mars."
+		=> "C13 OC 1-2-1"
+	"The ship looked os much bigger before I got on."
+		=> "C13 OC 1-2-2"
+	"It smells pretty bad here too."
+		=> "C13 OC 1-2-3"
+	"Nevermind."
+		=> exit
+
+."C13 OC 1-3"
+C13opinion + 1
+"Dr. Kapoor" "..."
+	"It's okay to be scared sometimes though."
+		=> "C13 OC 1-3-1"
+	"Do you think we'll get there okay?"
+		=> "C13 OC 1-3-2"
+	"It's not the same ind of scared I am of monsters though."
+		=> "C13 OC 1-3-3"
+	"Nevermind."
+		=> exit
+
+."C13 OC 1-1-1"
+C13opinion + 1
+"Dr. Kapoor" "..."
+	"I'm pretty sure it's okay to have two favorites."
+		=> "C13 OC 1 end"
+	"My friend Nigel always liked strawberry too, but he moved away."
+		=> "C13 OC 1 end"
+	"Sometimes I eat it too fast, and I get a headache though."
+		=> "C13 OC 1 end"
+	"Nevermind."
+		=> exit
+
+."C13 OC 1-1-2"
+C13opinion + 1
+"Dr. Kapoor" "..."
+	"It was great, but I ate too much and got a tummy ache."
+		=> "C13 OC 1 end"
+	"I would have invited you if I knew you back then."
+		=> "C13 OC 1 end"
+	"I hope I get to have another birthday party some day."
+		=> "C13 OC 1 end"
+	"Nevermind."
+		=> exit
+
+
+."C13 OC 1-1-3"
+C13opinion + 1
+"Dr. Kapoor" "..."
+	"I think everyone here would be a lot happier if we had ice cream."
+		=> "C13 OC 1 end"
+	"There's space for so much. I wonder what they're carrying instead."
+		=> "C13 OC 1 end"
+	"I think I'll ask that man who works ehre next time he comes by."
+		=> "C13 OC 1 end"
+	"Nevermind."
+		=> exit
+
+."C13 OC 1-2-1"
+C13opinion + 1
+"Dr. Kapoor" "..."
+	"I bet the grass is red, which is why Mars is red."
+		=> "C13 OC 1 end"
+	"Mars still has a sun too, right?"
+		=> "C13 OC 1 end"
+	"I want to play in the hose and make mud pies again."
+		=> "C13 OC 1 end"
+	"Nevermind."
+		=> exit
+
+."C13 OC 1-2-2"
+C13opinion + 1
+"Dr. Kapoor" "..."
+	"I've never been on a space ship before"
+		=> "C13 OC 1 end"
+	"I thought we'd all get our own rooms."
+		=> "C13 OC 1 end"
+	"What do you suppose is in the rest of the ship?"
+		=> "C13 OC 1 end"
+	"Nevermind."
+		=> exit
+
+."C13 OC 1-2-3"
+C13opinion + 1
+"Dr. Kapoor" "..."
+	"Maybe we can open that window up there."
+		=> "C13 OC 1 end"
+	"I want to take a bubble bath."
+		=> "C13 OC 1 end"
+	"I'm pretty sure the potty doesn't flush."
+		=> "C13 OC 1 end"
+	"Nevermind."
+		=> exit
+
+."C13 OC 1-3-1"
+C13opinion + 1
+"Dr. Kapoor" "..."
+	"I read in a book that scared is an opportunity to be brave."
+		=> "C13 OC 1 end"
+	"As long as were not scared every day."
+		=> "C13 OC 1 end"
+	"It's okay to cry sometimes too."
+		=> "C13 OC 1 end"
+	"Nevermind."
+		=> exit
+
+."C13 OC 1-3-2"
+C13opinion + 1
+"Dr. Kapoor" "..."
+	"It's a big ship. Maybe something could go wrong."
+		=> "C13 OC 1 end"
+	"It feels like it's taking forever."
+		=> "C13 OC 1 end"
+	"I hope we have enough food to get us there."
+		=> "C13 OC 1 end"
+	"Nevermind."
+		=> exit
+
+."C13 OC 1-3-3"
+C13opinion + 1
+"Dr. Kapoor" "..."
+	"Monsters were always less scary at the end of the book."
+		=> "C13 OC 1 end"
+	"Some monsters are good, like dragons and friendly giants."
+		=> "C13 OC 1 end"
+	"Dinosaurs are also scary, but a good kind of scary."
+		=> "C13 OC 1 end"
+	"Nevermind."
+		=> exit
+
+."C13 OC 1 end"
+C13opinion + 1
+"Dr. Kapoor" "Hey kid, could you just leave me alone for a little while?"
+=> exit
+
+# Conversation 2 for C13
+
+."C13 conv2 start bad"
+"Dr. Kapoor" "You need to watch your manners, kid."
+	"Sorry"
+		Response = "(sigh) Well, you're forgiven."
+		=> "C13 what do you want anyway"
+	"You don't need to be such a jerk about it"
+		=> "C13 manners jerk"
+
+."C13 what do you want anyway"
+"Dr. Kapoor" "% What do you want anyway?" %Response
+	"I just wanted to talk"
+		=> "C13 just to talk"
+	"I want to know more about you."
+		=> "C13 more about you"
+	"I need somewhere to go."
+		=> "C13 somewhere to go"
+
+."C13 manners jerk"
+"Dr. Kapoor" "And you don't need to be such a brat. Beat it."
+=> exit
+
+."C13 just to talk"
+"Dr. Kapoor" "I'm not really big on empty conversation."
+	"Then what do you like to talk about?"
+		=> "C13 what do you like"
+	"Well then tell me about yourself."
+		=> "C13 more about you"
+	"I need somewhere to go."
+		=> "C13 somewhere to go"
+
+
+."C13 conv2 start good"
+"Dr. Kapoor" "Hey kid. Sorry if I was kind of short with you earlier. Thanks for giving me the space though."
+	"Was I bothering you? Should I leave you alone now too?"
+		Response = "No, it's alright."
+		=> "C13 what do you want anyway"
+	"You didn't need to be such a jerk about it."
+		Response = "I said sorry, kid. Chill out."
+		=> "C13 what do you want anyway"
+	"Well being short with me just put you at the same height! Hahaha, get it?"
+		Respose = "(grins) Yeah, I get it, wise guy."
+		=> "C13 what do you want anyway"
+		# to be replaced with "C13 joke 1"
+
+."C13 more about you"
+"Dr. Kapoor" "Really? You want to know about me? I don't have a favorite food or a favorite color, and I'm not interested in meanginless things of the sort."
+	"No, I mean the serious stuff. Where are you from? Do you have family?"
+		=> "C13 actual you 1"
+	"Oh, okay. Never mind all this. (leave)"
+		=> exit
+
+."C13 actual you 1"
+"Dr. Kapoor" "That's probably not something I should be telling a little kid. What are you, like 8? I don't want to deal with angry parents."
+	"My parents aren't around anymore."
+		Response = "Oh... damn. I suppose you get it then."
+		=> "C13 actual you 2"
+	"I'm plenty old enough."
+		Response = "Well then, old one. No crying when you don't like what you hear."
+		=> "C13 actual you 2"
+	"I saw bad things back home too, ya know. It's not like you're going to mess me up even more."
+		Response = "I suppose there isn't much reason to pretend like the world is some magical place where people get along alright, is there?"
+		=> "C13 actual you 2"
+
+."C13 actual you 2"
+"Dr. Kapoor" "% I was a doctor. I always wanted to be one. My folks thought it would be a prestigious and stable profession, but I didn't care. I was young and idealistic, thinking I could make a difference." % Response
+	"I'm sure you did. Didn't you help people?"
+		Response = "Maybe at first I was, when life was quiet."
+		=> "C13 actual you 3"
+	"What stoppoed you?"
+		Response = "Reality."
+		=> "C13 actual you 3"
+
+."C13 actual you 3"
+"Dr. Kapoor" "%  When the fighting got closer, all I did was pull shrapnel and bullets out of people. I felt like fewer people survived every day. I should have just quit then." % Response
+	"Why didn't you?"
+		Response = "I was stupid. I didn't want to let go."
+		=> "C13 actual you 4"
+	"But you were helping."
+		Response = "I thought I was at the time."
+		=> "C13 actual you 4"
+
+."C13 actual you 4"
+"Dr. Kapoor" "%  We knew troops were coming for a whole week before we came under attack. Everyone smart started packing up and getting out. I didn't. Even when the bombs started falling, I stayed and tried to get patients to evac. I just wouldn't let them go. I was there for too long, and I didn't have time to save them." % Response
+	"That sounds really brave."
+		Response = "It was stupid and arrogent."
+		=> "C13 actual you 5"
+	"You did everything you could. You saved everyone you could."
+		Response = "It's not like that."
+		=> "C13 actual you 5"
+
+."C13 actual you 5"
+"Dr. Kapoor" "%  I wouldn't leave until they dragged me to a chopper and flew me out. I didn't have time to go home. They just brought me right to some camp. I spent the last couple weeks there until a colleague found me. The prick, he'd left the city a few weeks before the bombing. He didn't lose anything but his job. All his preaching about how it's not over, and how we can make it all mean something. It's all garbage. He wouldn't let it go until he got me on this damn ship." % Response
+	"You mean you don't want to be here?"
+		Response = "Not one bit. My life ended there, and I won't for a moment pretend that starting over is okay."
+		=> "C13 actual you 6"
+	"What would you have done instead?"
+		Response = "Nothing. Absolutely nothing. There is nothing left for me."
+		=> "C13 actual you 6"
+
+."C13 actual you 6"
+C13known = 1
+"Dr. Kapoor" "%  Is that what you were looking to hear, kid?" % Response
+	"No. I'm kind of sorry I asked."
+		Response = "That's what I thought."
+		=> exit
+	"You're a good person. You did so much. I really admire you for it."
+		Response = "Whatever. If you want to believe that, I can't stop you."
+		=> exit
+	"I don't get it. You did something great. Why are you so upset about it all?"
+		=> "C13 actual you 7"
+
+."C13 actual you 7"
+"Dr. Kapoor" "I lost everyone."
+	"Not those people you saved."
+		=>"C13 actual you 8"
+	"Not your friend who go you on the ship."
+		=>"C13 actual you 8"
+	
+."C13 actual you 8"
+"Dr. Kapoor" "They're not important."
+	"Sure they are."
+		=>"C13 actual you 9"
+	"That's kind of a nasty thing to say about them."
+		=>"C13 actual you 9"
+
+."C13 actual you 9"
+"Dr. Kapoor" "That's not what I mean."
+	"Then what do you mean?"
+		=>"C13 actual you 10-1"
+	"Then don't say it."
+		=>"C13 actual you 10-2"
+
+."C13 actual you 10-1"
+C13known = 2
+"Dr. Kapoor" "I mean my family. I should have left with them as soon as I could. They waited for me. They didn't make it out of the city."
+	"Oh."
+		=>"C13 actual you 11-1"
+	"I'm sorry."
+		=>"C13 actual you 11-2"
+	"We all lost people"
+		=>"C13 actual you 11-3"
+
+."C13 actual you 10-2"
+"Dr. Kapoor" "Sure, yeah. I won't say it. Let's just drop the whole thing... I think I'm done talking for now."
+=> exit
+
+."C13 actual you 11-1"
+"Dr. Kapoor" "... I think I'm done talking for now."
+=> exit
+
+."C13 actual you 11-2"
+"Dr. Kapoor" "Thanks... I think I'm done talking for now."
+=> exit
+
+."C13 actual you 11-3"
+"Dr. Kapoor" "I really don't care anymore... I think I'm done talking for now."
+=> exit
+
+."C13 what do you talk about"
+"Dr. Kapoor" "Well, really not much these days. I think you're really barking up the wrong tree."
+	"Well then tell me about yourself."
+		=> "C13 more about you"
+	"Oh, okay... I need somewhere to go."
+		=> "C13 somewhere to go."
+	"I guess you're right. Never mind all this. (leave)"
+		=> exit
+
+
+
+
+."C13 somewhere to go"
+"Dr. Kapoor" "I don't think I can help you with that. I don't think you'd want my help with that either. You don't even know who I am."
+	"Well, I don't know who anyone here is."
+		=> "C13 no better choice"
+	"So then tell me about yourself."
+		=> "C13 more about you"
+	"Fine. Forget it. (leave)"
+		=> exit
+
+."C13 no better choice"
+"Dr. Kapoor" "Then I'm no better choice than anyone else. Go latch on to one of them instead."
+	"No. Let me get to know you."
+		=> "C13 more about you"
+	"Fine. Forget it. (leave)"
+		=> exit
+
+# C13 third conversation
+
+."C13 conv3"
+"Dr. Kapoor" "Hey kid. What's on your mind?"
+	"I want to come with you."
+		if C13opinion<5:
+			=> "C13 go heck no"
+		else: if C13known<1:
+			=> "C13 go unknown"
+		else: 
+			=> "C13 go 1"
+		endif
+	"I want to wish you good luck."
+		=> "C13 good luck"
+	
+."C13 go heck no"
+"Dr. Kapoor" "No way. Go latch on to someone else."
+	"Nobody else will help me."
+		=> "C13 go problem"
+	"Why are you so mean?"
+		=> "C13 go so mean"
+	"(leave)"
+		=> exit
+
+."C13 go unknown"
+"Dr. Kapoor" "Kid, you don't even know me. Find someone else."
+	"Nobody else will help me."
+		=> "C13 go problem"
+	"Why are you so mean?"
+		=> "C13 go so mean"
+	"(leave)"
+		=> exit
+
+."C13 go problem"
+"Dr. Kapoor" "I can't make that my problem."
+=> exit
+
+."C13 go so mean"
+"Dr. Kapoor" "Because it should be your hint that I'm not going to let you come with me."
+=> exit
+
+."C13 go 1"
+"Dr. Kapoor" "What? Are you serious?"
+	"Yeah. You're a good guy."
+		if C13known<2:
+			=> "C13 go 2 good 1"
+		else:
+			=> "C13 go 2 good 2"
+		endif
+	"No one else will help me."
+		if C13known<2:
+			=> "C13 go 2 noone 1"
+		else:
+			=> "C13 go 2 noone 2"
+		endif
+
+."C13 go 2 good 1"
+"Dr. Kapoor" "You really don't know what you're talking about. Look, I'm sorry. I just can't take care of someone else. Hell, I'm not sure if I can take care of myself right now. I just can't help you, and I'm not going to lie and say that I can. I really hope you figure your way out, kid. It probably means nothing coming from me, but good luck."
+=> exit
+
+."C13 go 2 noone 1"
+"Dr. Kapoor" "Look, I'm sorry. I just can't take care of someone else. Hell, I'm not sure if I can take care of myself right now. I'd only drag you down with me. I just can't help you, and I'm not going to lie and say that I can. I really hope you figure your way out, kid. It probably means nothing coming from me, but good luck."
+=> exit
+
+."C13 go 1 good 2"
+"Dr. Kapoor" "Kid, you're crazy to think so. You know what happened when I couldn't take care of my own family. Hell, I don't think I can even take care of myself anymore."
+	"Then you need someone to look after you too."
+		=> "C13 go 3"
+	"Maybe you're right."
+		=> "C13 sorry bye"
+
+."C13 go 1 noone 2"
+"Dr. Kapoor" "Even having nobody would be better than having me. You know what happened when I couldn't take care of my own family. Hell, I don't think I can even take care of myself anymore."
+	"Then you need someone to look after you too."
+		=> "C13 go 3"
+	"Maybe you're right."
+		=> "C13 sorry bye"
+
+."C13 sorry bye"
+"Dr. Kapoor" "Sorry, but I'm glad you see it. I'd only drag you down with me. I just can't help you, and I'm not going to lie and say that I can. I really hope you figure your way out, kid. It probably means nothing coming from me, but good luck. You're a good kid, and you deserve so much better than all this. Goodbye."
+	=> exit
+
+."C13 go 3"
+"Dr. Kapoor" "That's not your job, kid."
+	"Remember where the hell we are? Everybody needs somebody here."
+		=> "C13 go win"
+	"Maybe you're right."
+		=> "C13 sorry bye"
+
+."C13 go win"
+C13win = true
+"Dr. Kapoor" "I suppose I can't argue with that. You can tag along, but I'm not turning into some teddy bear who will coddle you. You know I'm abrasive, and that's not going to change. Also, that's the last time you'll swear at me. We have a deal?"
+	"Deal"
+		=> "gameover"

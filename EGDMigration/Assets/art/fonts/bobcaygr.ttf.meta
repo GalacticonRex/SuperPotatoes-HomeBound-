@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 966b86b622341c14aa929d94608f2282
+timeCreated: 1487086596
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Bobcaygeon Plain BRK
+  fontNames:
+  - Bobcaygeon Plain BRK
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

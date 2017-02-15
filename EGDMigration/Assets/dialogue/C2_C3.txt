@@ -1,0 +1,171 @@
+."brother start"
+"Older brother" "Uh...hi. Can I help you?"
+	"Hi, I’m %." % PlayerName
+		=> "brother ch 1"
+	"I don’t know anyone here."
+		=> "brother ch 2"
+	"Do you have a red crayon?"
+		=> "brother ch 3"
+
+."brother ch 1"
+"Older brother" "I’m Jacob. Jacob Muñoz."
+	"Have you ever done anything like this before? I’m scared."
+		=> "brother ch 1 1"
+	"It’s nice to meet you."
+		=> "brother ch 1 2"
+
+."brother ch 1 1"
+"Jacob Muñoz" "Moved? Yes. Been smuggled? No. To be honest, I’m kind of scared, too."
+	"Where are you from?"
+		=> "brother ch 1 1 1"
+	"What are you scared of?"
+		=> "brother ch 1 1 2"
+
+."brother ch 1 1 1"
+"Jacob Muñoz" "My sister and I are from Colombia. We came to America with our parents. Now it’s just the two of us, I guess."
+	"Where are your parents now? "
+		=> "brother ch 1 1 1 1"
+	"Yeah, I’m alone, too."
+		=> "brother ch 2"
+
+."brother ch 1 1 1 1"
+"Jacob Muñoz" "Back on Earth somewhere. They couldn’t get on the ship. I’ve never been on my own before. I’m sorry, but I have to go find my sister now. It was nice talking to you though. See you around."
+=> exit
+
+."brother ch 1 1 2"
+"Jacob Muñoz" "Being in charge. Taking care of my sister. Being illegal. A lot of kids used to say we were going to get deported. I wonder how they boot you off a planet."
+	"I’m scared of being alone."
+		=> "brother ch 1 1 2 1"
+	"I’m sorry."
+		=> "brother ch 1 1 2 2"
+
+."brother ch 1 1 2 1"
+"Jacob Muñoz" "Oh, God. Yeah, I understand that, but I doubt you’ll be alone, Kid. I mean you have your parents, right? Or whoever you brought with you? You’ll be okay. I’m sorry, but I have to go find my sister now. It was really nice talking to you. Come find me tomorrow."
+=> exit
+
+."brother ch 1 1 2 2"
+"Jacob Muñoz" "Thanks. I hope we’ll be okay. Look, Kid, I have to go, but it was really nice talking to you. Take care."
+=> exit
+
+."brother ch 1 2"
+"Jacob Muñoz" "It’s nice to meet you, too. What are you up to, %?" % PlayerName
+	"I wanted to make friends. Where are you from?"
+		=> "brother ch 1 1 1"
+	"I’m alone here. The ship guy said I have to find someone to live with."
+		=> "brother ch 2 2"
+
+."brother ch 2"
+"Jacob Muñoz" "Wait, you’re alone? How’d a kid get onto a spaceship? They said you had to be 18 to travel alone."
+	"You don’t look 18."
+		=> "brother ch 2 1"
+	"I was hidden here. The ship guy said I have to find someone to live with."
+		=> "brother ch 2 2"
+
+."brother ch 2 1"
+"Jacob Muñoz" "I-I have a young...face. Uh, I have to go, Kid. You should try one of those older people if you’re looking for a guardian. Good luck."
+=> exit
+
+."brother ch 2 2"
+"Jacob Muñoz" "Oh, I’m sorry, Kid. That’s rough. You should try one of those older people, there. They should know what to do. Good luck."
+=> exit
+
+."brother ch 3"
+"Jacob Muñoz" "Uh… no I do not. Hey, Kid, where’s your parents?"
+	"They’re not here. I was hidden here. The ship guy said I have to find someone to live with."
+		=> "brother ch 2 2"
+	"Where’s yours?"
+		=> "brother ch 3 2"
+
+."brother ch 3 2"
+"Jacob Muñoz" "They... were left behind. Back on Earth. But I’m not a pre-schooler. How old are you, Kid? Are you here alone? Do you have someone waiting for you on Mars?"
+	"Tell the truth."
+		=> "brother ch 2 2"
+	"Say nothing."
+		=> "brother ch 3 2 2"
+		
+."brother ch 3 2 2"
+"Jacob Muñoz" "Look, I understand wanting to protect yourself, but I don’t think you’ll do very well out there by yourself. You should find someone who can take care of you."
+=> exit
+
+
+."sister start"
+if SisterConv == 0:
+	SisterConv + 1
+	=> "sister start 1"
+else: if SisterConv == 1:
+	SisterConv + 1
+	=> "sister start 2"
+else:
+	=> exit
+
+."sister start 1"
+"Sister" “Huh? Oh well look at you, Squirt. I thought I’d be the youngest kid on board. What’s up?”
+	“Hi, I’m %.” % PlayerName
+		=> “C3 conv1 1”
+	“I don’t know anyone here.”
+		=> “C3 conv1 2”
+	“Do you have a red crayon?”
+		=> “C3 conv1 3”
+
+."C3 conv1 1"
+"Sister" "The name’s Bond. James Bond."
+"You" "Really?"
+"James Bond" "...Yes."
+=> exit
+
+."C3 conv1 2"
+"Sister" "Well, you know me now, Kid."
+	"Thanks. Would I be able to stay with you guys? Like on Mars?"
+		=> "C3 conv1 2-1"
+	"Thanks."
+		=> "C3 conv1 2-2"
+		
+
+."C3 conv1 2-1"
+"Sister" "I mean, I wouldn’t mind, but you’d have to ask my brother because he’s The Boss now. Ugh."
+=> exit
+
+."C3 conv1 2-2"
+"Sister" "Sure thing, Kid."
+=> exit
+
+."C3 conv1 3"
+"Sister" "I do not, but I’m pretty sure if you go through that white lady’s purse, you could find one."
+	"I think I’d get in trouble if I went through that lady’s purse."
+		=> "C3 conv1 3-1"
+	"Okay, thanks!"
+		=> "C3 conv1 3-2"
+
+."C3 conv1 3-1"
+"Sister" "Yeah, I was just joking."
+=> exit
+
+."C3 conv1 3-2"
+"Sister" "Whoa, Kid. Bad idea. I was just joking. Wouldn’t your mom get mad at you if you got in trouble like that?"
+	"My mom’s not here. I’m alone."
+		=> "C3 conv1 3-2-1"
+	"You’re right."
+		=> "C3 conv1 3-2-2"
+
+."C3 conv1 3-2-1"
+"Sister" "Oh, I’m sorry. I don’t have any parents here either. Still though, you can’t just act on every dumb idea someone tells you to do."
+=> exit
+
+."C3 conv1 3-2-2"
+"Sister" "Be careful from now on, okay kid?"
+=> exit
+
+
+."sister start 2"
+"Sister" "Hey, Squirt. What’s going on?"
+	"Can I live with you guys on Mars?"
+		=> “C3 conv 2 1”
+	"Ask someone else"
+		=> exit
+
+."C3 conv 2 1"
+"Sister" "You’ll need to ask my older brother. His name’s Jacob. He’s over there."
+=> exit
+
+
+	

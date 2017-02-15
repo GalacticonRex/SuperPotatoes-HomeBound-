@@ -1,0 +1,11 @@
+# Support nodes
+
+
+."gameover"
+AnyWin = true
+=> exit
+
+."landing"  #to use when all conversations are exhausted, and only C4 can be spoken to
+EndgameFlag = true
+"intercom" "We're beginning our approach and will be docked in the next few minutes."
+=>exit
