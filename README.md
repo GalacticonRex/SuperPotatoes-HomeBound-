@@ -1,2 +1,2 @@
-# SuperPotatoes-HomeBound-
+# HomeBound
 EGD Migration
